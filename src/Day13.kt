@@ -8,7 +8,7 @@ sealed interface Fold {
 typealias Grid = TreeMap<Int, TreeMap<Int, Unit>>
 typealias Folds = List<Fold>
 
-fun parse(input: List<String>): Pair<Grid, Folds> {
+fun parse2(input: List<String>): Pair<Grid, Folds> {
     val folds = mutableListOf<Fold>()
     val grid = TreeMap<Int, TreeMap<Int, Unit>>()
 
@@ -83,13 +83,13 @@ fun Grid.print() {
 fun main() {
 
     fun part1(input: List<String>): Int {
-        val (grid, folds) = parse(input)
+        val (grid, folds) = parse2(input)
         val finalGrid = fold(grid, folds.first())
         return finalGrid.values.sumOf { it.values.count() }
     }
 
     fun part2(input: List<String>): Int {
-        val (grid, folds) = parse(input)
+        val (grid, folds) = parse2(input)
         folds.fold(grid) {acc, fold -> fold(acc, fold) }.print()
         return 0
     }
